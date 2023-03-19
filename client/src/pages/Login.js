@@ -24,9 +24,11 @@ const StyledLoginButton = styled.a`
   }
 `;
 
+const LOGIN_URI = 'http://localhost:2222/login';
+
 const Login = () => (
   <StyledLoginContainer>
-    <StyledLoginButton href={'http://localhost:2222/login'}>Log in to Spotify</StyledLoginButton>
+    <StyledLoginButton href={`${LOGIN_URI}`}>Log in to Spotify</StyledLoginButton>
   </StyledLoginContainer>
 );
 

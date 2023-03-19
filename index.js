@@ -10,7 +10,7 @@ const app = express();
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI;
+const REDIRECT_URI = process.env.REDIRECT_URI || 'http://localhost:2222/callback';
 const FRONTEND_URI = process.env.FRONTEND_URI;
 const PORT = process.env.PORT || 2222;
 
@@ -40,21 +40,19 @@ const generateRandomString = (length) => {
 const stateKey = 'spotify_auth_state';
 
 app.get('/login', (req, res) => {
-  debugger;
-
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
   const scope = ['user-read-private', 'user-read-email', 'user-top-read'].join(' ');
 
   const queryParams = querystring.stringify({
-    client_id: CLIENT_ID,
     response_type: 'code',
+    client_id: CLIENT_ID,
+    scope: scope,
     redirect_uri: REDIRECT_URI,
     state: state,
-    scope: scope,
   });
-  res.redirect(`http://accounts.spotify.com/authorize?${queryParams}`);
+  res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
 });
 
 app.post('/support', async (req, res) => {
