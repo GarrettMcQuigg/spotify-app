@@ -12,7 +12,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const FRONTEND_URI = process.env.FRONTEND_URI;
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2222;
 
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
@@ -40,6 +40,8 @@ const generateRandomString = (length) => {
 const stateKey = 'spotify_auth_state';
 
 app.get('/login', (req, res) => {
+  debugger;
+
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -99,7 +101,7 @@ app.get('/callback', (req, res) => {
           refresh_token,
         });
 
-        res.redirect(`${FRONTEND_URI}?${queryParams}`);
+        res.redirect(`${FRONTEND_URI}/?${queryParams}`);
       } else {
         res.redirect(`/?${querystring.stringify({ error: 'invalid_token' })}`);
       }
