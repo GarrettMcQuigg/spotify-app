@@ -7,7 +7,7 @@ const SupportForm = () => {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
 
-  const BACKEND_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:2222/support' : 'https://gbm-spotify.herokuapp.com/support';
+  const BACKEND_URI = process.env.NODE_ENV !== 'production' ? 'http://3.138.33.248:22/support' : 'https://gbm-spotify.herokuapp.com/support';
   
   const handleSubmit = (e) => {
     e.preventDefault();
