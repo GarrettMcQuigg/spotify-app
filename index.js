@@ -43,16 +43,18 @@ app.get('/login', (req, res) => {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  const scope = ['user-read-private', 'user-read-email', 'user-top-read'].join(' ');
+  const scope =
+    'user-read-private user-read-email user-top-read user-read-recently-played user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
 
-  const queryParams = querystring.stringify({
-    response_type: 'code',
-    client_id: CLIENT_ID,
-    scope: scope,
-    redirect_uri: REDIRECT_URI,
-    state: state,
-  });
-  res.redirect(`https://accounts.spotify.com/authorize?${queryParams}`);
+  res.redirect(
+    `https://accounts.spotify.com/authorize?${querystring.stringify({
+      response_type: 'code',
+      client_id: CLIENT_ID,
+      scope: scope,
+      redirect_uri: REDIRECT_URI,
+      state: state,
+    })}`
+  );
 });
 
 app.post('/support', async (req, res) => {
@@ -81,9 +83,9 @@ app.get('/callback', (req, res) => {
     method: 'post',
     url: 'https://accounts.spotify.com/api/token',
     data: querystring.stringify({
-      grant_type: 'authorization_code',
       code: code,
       redirect_uri: REDIRECT_URI,
+      grant_type: 'authorization_code',
     }),
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
