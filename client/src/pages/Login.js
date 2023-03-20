@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro';
-import axios from 'axios';
 
 const StyledLoginContainer = styled.main`
   display: flex;
@@ -25,14 +24,14 @@ const StyledLoginButton = styled.a`
   }
 `;
 
-const redirectLogin = () => {
-  console.log('hello');
-  axios.get('http://localhost:2222/login');
-}
+// const redirectLogin = () => {
+//   console.log('hello');
+//   axios.get('http://localhost:2222/login');
+// }
 
 const Login = () => (
   <StyledLoginContainer>
-    <StyledLoginButton onClick={redirectLogin}>Log in to Spotify</StyledLoginButton>
+    <StyledLoginButton href='http://localhost:2222/login'>Log in to Spotify</StyledLoginButton>
   </StyledLoginContainer>
 );
 
