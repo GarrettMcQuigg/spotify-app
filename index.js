@@ -16,7 +16,17 @@ const PORT = process.env.PORT || 2222;
 
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
-app.use(cors());
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -43,8 +53,7 @@ app.get('/login', (req, res) => {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  const scope =
-    'user-read-private user-read-email user-top-read user-read-recently-played user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
+  const scope = 'user-read-private user-read-email user-top-read';
 
   res.redirect(
     `https://accounts.spotify.com/authorize?${querystring.stringify({
