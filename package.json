@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "14.15.0",
-    "npm": "9.2.0"
+    "node": "16.19.1",
+    "npm": "8.19.3"
   },
   "cacheDirectories": [
     "node_modules",
