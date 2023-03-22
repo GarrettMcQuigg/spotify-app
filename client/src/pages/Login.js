@@ -24,7 +24,7 @@ const StyledLoginButton = styled.a`
   }
 `;
 
-const LOGIN_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:2222/login' : 'https://spotify-gbm.herokuapp.com/callback';
+const LOGIN_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:2222/login' : 'https://spotify-gbm.herokuapp.com/login';
 
 const Login = () => (
   <StyledLoginContainer>
