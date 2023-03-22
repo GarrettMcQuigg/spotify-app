@@ -12,8 +12,13 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 let REDIRECT_URI = process.env.REDIRECT_URI || 'http://localhost:2222/callback';
 let FRONTEND_URI = process.env.FRONTEND_URI || 'http://localhost:3000';
-
 const port = process.env.PORT || 2222;
+
+if (process.env.NODE_ENV !== 'production') {
+    REDIRECT_URI = 'http://localhost:2222/callback';
+    FRONTEND_URI = 'http://localhost:3000';
+}
+
 
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
