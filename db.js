@@ -1,12 +1,12 @@
-// const { Client } = require('pg');
-// const { getDatabaseUri } = require('./config');
+const { Client } = require('pg');
+const { getDatabaseUri } = require('./config');
 
-// let db;
+let db;
 
-// db = new Client({
-//   connectionString: getDatabaseUri(),
-// });
+db = new Client({
+  connectionString: getDatabaseUri(),
+});
 
-// db.connect();
+db.connect();
 
-// module.exports = db;
+module.exports = db;
