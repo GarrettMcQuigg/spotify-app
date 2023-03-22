@@ -24,14 +24,11 @@ const StyledLoginButton = styled.a`
   }
 `;
 
-// const redirectLogin = () => {
-//   console.log('hello');
-//   axios.get('http://localhost:2222/login');
-// }
+const LOGIN_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:2222/login' : 'https://spotify-gbm.herokuapp.com/callback';
 
 const Login = () => (
   <StyledLoginContainer>
-    <StyledLoginButton href='http://localhost:2222/login'>Log in to Spotify</StyledLoginButton>
+    <StyledLoginButton href={LOGIN_URI}>Log in to Spotify</StyledLoginButton>
   </StyledLoginContainer>
 );
 

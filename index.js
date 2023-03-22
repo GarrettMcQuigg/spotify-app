@@ -5,8 +5,6 @@ const axios = require('axios');
 const db = require('./db');
 const cors = require('cors');
 const path = require('path');
-const keys = require('./keys');
-const bodyParser = require('body-parser');
 
 const app = express();
 
