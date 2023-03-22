@@ -15,13 +15,6 @@ const FRONTEND_URI = process.env.FRONTEND_URI;
 
 const port = process.env.PORT || 2222;
 
-const { Pool, Client } = require('pg')
-    const connectionString = 'postgresql://dbuser:secretpassword@database.server.com:3211/mydb'
-
-    const pool = new Pool({
-        connectionString: connectionString,
-    })
-
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
 app.use(function (req, res, next) {
